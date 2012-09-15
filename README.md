@@ -7,7 +7,7 @@ jQuery and jQuery-UI
 
 ## Tiny example
 All you need to do is just initalize form with the plugin and call it's 'fill' method like that:
-```
+```javascript
 var $form = $('#js-form1').form();
 $form.form('fill', values);
 ```
