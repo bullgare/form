@@ -1,0 +1,85 @@
+<!doctype html>
+<head>
+	<link rel="stylesheet" type="text/css" href="jasmine.css" />
+	<script type="text/javascript" src="https://raw.github.com/pivotal/jasmine/master/lib/jasmine-core/jasmine.js"></script>
+	<script type="text/javascript" src="https://github.com/pivotal/jasmine/raw/master/lib/jasmine-core/jasmine-html.js"></script>
+
+	<script type="text/javascript" src="http://code.jquery.com/jquery.min.js"></script>
+	<script type="text/javascript" src="http://code.jquery.com/ui/1.8.22/jquery-ui.min.js"></script>
+
+	<script type="text/javascript" src="../bu_form.js"></script>
+</head>
+<body>
+	<h2 style="position: relative; left: 15em; z-index: 5;">For proper tests reload please press Ctrl+F5 or Cmd+R</h2>
+	<form id="js-form" style="display: none;">
+		<dl>
+			<dt>Name:</dt>
+			<dd><input type="text" name="name" /></dd>
+			<dt>Lastname:</dt>
+			<dd><input type="text" name="lastname" /></dd>
+			<dt>Age:</dt>
+			<dd>
+				<select name="age">
+					<option value="1">1!</option>
+					<option value="2">2!</option>
+					<option value="3">3!</option>
+					<option value="4">4!</option>
+					<option value="5">5!</option>
+					<option value="6">6!</option>
+					<option value="7">7!</option>
+					<option value="8">8!</option>
+					<option value="9">9!</option>
+					<option value="11">11!</option>
+					<option value="12">12!</option>
+					<option value="13">13!</option>
+					<option value="14">14!</option>
+					<option value="15">15!</option>
+					<option value="16">16!</option>
+				</select>
+			</dd>
+			<dt>Sex:</dt>
+			<dd>
+				<label><input type="radio" name="sex" value="m" />male</label>
+				<label><input type="radio" name="sex" value="f" />female</label>
+			</dd>
+			<dt>Hobbies:</dt>
+			<dd>
+				<label><input type="checkbox" name="hobby_cooking" />cooking</label>
+				<label><input type="checkbox" name="hobby_walking" />walking</label>
+				<label><input type="checkbox" name="hobby_working" />working</label>
+			</dd>
+			<dt>About:</dt>
+			<dd>
+				<textarea name="about">Type something</textarea>
+			</dd>
+		</dl>
+		<input type="hidden" name="some" value="12" />
+	</form>
+
+
+
+	<script type="text/javascript" src="tests.js"></script>
+	<script type="text/javascript">
+		(function() {
+			var jasmineEnv = jasmine.getEnv();
+			jasmineEnv.updateInterval = 1000;
+
+			var trivialReporter = new jasmine.TrivialReporter();
+
+			jasmineEnv.addReporter(trivialReporter);
+
+			jasmineEnv.specFilter = function(spec) {
+				return trivialReporter.specFilter(spec);
+			};
+
+			$( document ).ready( function () {
+				execJasmine();
+			} );
+
+			function execJasmine() {
+				jasmineEnv.execute();
+			}
+
+		})();
+	</script>
+</body>

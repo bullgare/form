@@ -1,0 +1,81 @@
+<!doctype html>
+<head>
+</head>
+<body>
+	<form id="js-form1">
+		<dl>
+			<dt>Name:</dt>
+			<dd><input type="text" name="name" /></dd>
+			<dt>Lastname:</dt>
+			<dd><input type="text" name="lastname" /></dd>
+			<dt>Age:</dt>
+			<dd>
+				<select name="age">
+					<option value="1">1!</option>
+					<option value="2">2!</option>
+					<option value="3">3!</option>
+					<option value="4">4!</option>
+					<option value="5">5!</option>
+					<option value="6">6!</option>
+					<option value="7">7!</option>
+					<option value="8">8!</option>
+					<option value="9">9!</option>
+					<option value="11">11!</option>
+					<option value="12">12!</option>
+					<option value="13">13!</option>
+					<option value="14">14!</option>
+					<option value="15">15!</option>
+					<option value="16">16!</option>
+				</select>
+			</dd>
+			<dt>Sex:</dt>
+			<dd>
+				<label><input type="radio" name="sex" value="m" />male</label>
+				<label><input type="radio" name="sex" value="f" />female</label>
+			</dd>
+			<dt>Hobbies:</dt>
+			<dd>
+				<label><input type="checkbox" name="hobby_cooking" />cooking</label>
+				<label><input type="checkbox" name="hobby_walking" />walking</label>
+				<label><input type="checkbox" name="hobby_working" />working</label>
+			</dd>
+			<dt>About:</dt>
+			<dd>
+				<textarea name="about">Type something</textarea>
+			</dd>
+		</dl>
+		<input type="hidden" name="some" value="11" />
+	</form>
+
+	<button class="js-fill-form">fill form with values</button>
+
+
+	<script type="text/javascript" src="http://code.jquery.com/jquery.min.js"></script>
+	<script type="text/javascript" src="http://code.jquery.com/ui/1.8.22/jquery-ui.min.js"></script>
+
+	<script type="text/javascript" src="../bu_form.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function () {
+			var $form = $('#js-form1').form();
+
+			$form.on('fill_started.bu', function onFillStart(Event, Params) { console.log('fill start', Params); });
+			$form.on('fill_ended.bu', function onFillStart(Event, Params) { console.log('fill end', Params); });
+
+			$('.js-fill-form').on('click', function () {
+				var values = {
+					name : 'me',
+					lastname : 'myself',
+					age : '5',
+					sex : 'f',
+					hobby_cooking : false,
+					hobby_walking : true,
+					hobby_working : false,
+					about : 'Type something else',
+					some : '12'
+				};
+				$form.form('fill', values);
+			});
+		});
+	</script>
+
+</body>
