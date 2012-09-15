@@ -22,6 +22,9 @@
 				me.storeDefaults();
 			},
 
+			/**
+			 * Save current input state as default
+			 */
 			storeDefaults: function ()
 			{
 				var me = this;
@@ -55,11 +58,20 @@
 				});
 			},
 
+			/**
+			 * Get saved defaults for inputs
+			 * @return {Object}
+			 */
 			getDefaults: function ()
 			{
 				return this._defaults;
 			},
 
+			/**
+			 * Filling form with data from given object
+			 * @param Values
+			 * @param PreventUsingDefaults
+			 */
 			fill: function (Values, PreventUsingDefaults)
 			{
 				var me = this,
