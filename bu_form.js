@@ -6,7 +6,6 @@
 
 	$.widget( 'bu.form',
 		{
-			_$form: null,
 			_defaults: {},
 			options:
 			{
@@ -15,10 +14,8 @@
 
 			_create: function ()
 			{
-				var me = this,
-					$me = $(me.element);
+				var me = this;
 
-				me._$form = $me;
 				me.storeDefaults();
 			},
 
@@ -27,10 +24,11 @@
 			 */
 			storeDefaults: function ()
 			{
-				var me = this;
+				var me = this,
+					$me = $(me.element);
 
 				me._defaults = {};
-				$(me.options.allInputsSelector, me._$form).each(function () {
+				$(me.options.allInputsSelector, $me).each(function () {
 					var $el = $(this);
 					if ($el.attr('name'))
 					{
@@ -75,10 +73,11 @@
 			fill: function (Values, PreventUsingDefaults)
 			{
 				var me = this,
+					$me = $(me.element),
 					valuesToSet = PreventUsingDefaults ? Values : $.extend(true, {}, me._defaults, Values);
 
-				me._$form.trigger('fill_started.bu', {values: Values, defaults: me._defaults, usingDefaults: ! PreventUsingDefaults});
-				$(me.options.allInputsSelector, me._$form).each(function () {
+				$me.trigger('fill_started.bu', {values: Values, defaults: me._defaults, usingDefaults: ! PreventUsingDefaults});
+				$(me.options.allInputsSelector,$me).each(function () {
 					var $el = $(this),
 						name = $el.attr('name');
 
@@ -123,7 +122,7 @@
 					}
 				});
 
-				me._$form.trigger('fill_ended.bu', {values: Values, defaults: me._defaults, usingDefaults: ! PreventUsingDefaults});
+				$me.trigger('fill_ended.bu', {values: Values, defaults: me._defaults, usingDefaults: ! PreventUsingDefaults});
 			}
 
 			// TODO think about
